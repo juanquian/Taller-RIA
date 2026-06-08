@@ -1,34 +1,41 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { useLocalStorage } from '../composables/useLocalStorage'
 
-const STORAGE_KEY = 'anime-explorer:favorites'
+export const useFavoritesStore = defineStore(
+  'favorites',
+  () => {
 
-export const useFavoritesStore = defineStore('favorites', () => {
-  const stored = localStorage.getItem(STORAGE_KEY)
-  const favorites = ref(stored ? JSON.parse(stored) : [])
+    const favorites = useLocalStorage(
+      'anime-explorer:favorites',
+      []
+    )
 
-  function save() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites.value))
-  }
-
-  function isFavorite(id) {
-    return favorites.value.some(f => f.id === id)
-  }
-
-  function toggle(item) {
-    if (isFavorite(item.id)) {
-      favorites.value = favorites.value.filter(f => f.id !== item.id)
-    } else {
-      favorites.value.push(item)
+    function isFavorite(id) {
+      return favorites.value.some(
+        f => f.id === id
+      )
     }
-    save()
+
+    function toggle(item) {
+      if (isFavorite(item.id)) {
+        favorites.value =
+          favorites.value.filter(
+            f => f.id !== item.id
+          )
+      } else {
+        favorites.value.push(item)
+      }
+    }
+
+    function clear() {
+      favorites.value = []
+    }
+
+    return {
+      favorites,
+      isFavorite,
+      toggle,
+      clear,
+    }
   }
-
-  function clear() {
-    favorites.value = []
-    save()
-  }
-
-  return { favorites, isFavorite, toggle, clear }
-})
-
+)

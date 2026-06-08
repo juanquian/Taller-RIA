@@ -34,7 +34,6 @@ const { results, isLoading, error, lastQuery } = storeToRefs(animeStore)
 </template>
 
 <style scoped>
-/* BEM: explore-view */
 .explore-view {
   padding: 2rem 1rem;
 }

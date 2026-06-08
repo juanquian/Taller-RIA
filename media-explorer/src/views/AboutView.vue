@@ -2,23 +2,40 @@
   <div class="about-view">
     <div class="container">
       <h1>Acerca del proyecto</h1>
+      <h2>Anime Explorer</h2>
 
       <p class="about-view__intro">
         <strong>Anime Explorer</strong> es una aplicación SPA desarrollada como trabajo práctico
-        para el <strong>Taller de RIA 2026</strong>. Es una primera versión funcional — el objetivo
-        es mostrar la arquitectura base y el flujo principal, no una app terminada.
+        para el <strong>Taller de RIA 2026</strong>. 
+        Utiliza la API de Jikan para mostrar información sobre miles 
+        de animes, permitiendo a los usuarios explorar, buscar y guardar 
+        sus títulos favoritos.</p>
+        <p class="about-view__intro"> El proyecto está construido con Vue 3, 
+        Vue Router y Pinia, y cuenta con un diseño responsive y un modo 
+        oscuro/claro para una mejor experiencia de usuario.
       </p>
- 
-
-      <h2>Próximos pasos</h2>
+      <p class="about-view__intro">
+        El código fuente está disponible en GitHub, y se implementaron 
+        funcionalidades como la persistencia de favoritos en localStorage, 
+        navegación fluida entre vistas y una interfaz intuitiva para descubrir nuevos animes.
+      </p>
+      <h2>Tecnologías</h2>
       <ul class="about-view__list">
-        <li>Página de detalle de cada anime</li>
-        <li>Paginación en los resultados de búsqueda</li>
-        <li>Filtro por tipo (TV, película, OVA)</li>
-        <li>Tema claro/oscuro</li>
+        <li>Vue 3</li>
+        <li>Vue Router</li>
+        <li>Pinia</li>
+        <li>Jikan API</li>
+      </ul>
+      <h2>Funcionalidades</h2>
+      <ul class="about-view__list">
+        <li>Búsqueda de anime</li>
+        <li>Favoritos persistentes</li>
+        <li>Página de detalle</li>
+        <li>Modo oscuro/claro</li>
+        <li>Persistencia local</li>
       </ul>
     </div>
-  </div>
+  </div>  
 </template>
 
 <style scoped>

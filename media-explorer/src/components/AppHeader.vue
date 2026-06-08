@@ -1,24 +1,37 @@
 <script setup>
 import { computed } from 'vue'
 import { useFavoritesStore } from '../stores/favoritesStore'
+import { useThemeStore } from '../stores/themeStore'
 
 const favoritesStore = useFavoritesStore()
 const favCount = computed(() => favoritesStore.favorites.length)
-</script>
+const themeStore = useThemeStore()
 
+</script>
 <template>
   <header class="app-header">
     <div class="app-header__container">
-      <RouterLink to="/" class="app-header__logo">🎌 Anime Explorer</RouterLink>
-      <nav class="app-header__nav">
-        <RouterLink to="/">Inicio</RouterLink>
-        <RouterLink to="/explorar">Explorar</RouterLink>
-        <RouterLink to="/favoritos">
-          Favoritos
-          <span v-if="favCount > 0" class="app-header__badge">{{ favCount }}</span>
-        </RouterLink>
-        <RouterLink to="/acerca">Acerca</RouterLink>
-      </nav>
+      <RouterLink to="/" class="app-header__logo">Anime Explorer</RouterLink>
+        <nav class="app-header__nav">
+          <RouterLink to="/">Inicio</RouterLink>
+          <RouterLink to="/explorar">Explorar</RouterLink>
+
+          <RouterLink to="/favoritos">
+            Favoritos
+            <span v-if="favCount > 0" class="app-header__badge">
+              {{ favCount }}
+            </span>
+          </RouterLink>
+
+          <RouterLink to="/acerca">Acerca</RouterLink>
+
+          <button
+            class="app-header__theme-btn"
+            @click="themeStore.toggleTheme"
+          >
+            {{ themeStore.darkMode ? 'Claro' : 'Oscuro' }}
+          </button>
+        </nav>
     </div>
   </header>
 </template>
@@ -80,5 +93,19 @@ const favCount = computed(() => favoritesStore.favorites.length)
   .app-header__nav {
     gap: 0.75rem;
   }
+}
+.app-header__theme-btn {
+  background: none;
+  border: 1px solid #444;
+  color: #aaa;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.app-header__theme-btn:hover {
+  color: #fff;
+  border-color: #666;
 }
 </style>
