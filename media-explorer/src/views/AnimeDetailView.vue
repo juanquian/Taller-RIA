@@ -2,8 +2,12 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { getAnimeById } from '../services/animeService'
+import { useAnimeViews } from '../composables/useAnimeViews'
 
 const route = useRoute()
+const { incrementViews, getViews } = useAnimeViews()
+
+const views = ref(0)
 
 const anime = ref(null)
 const loading = ref(true)
@@ -12,6 +16,9 @@ const error = ref(null)
 onMounted(async () => {
   try {
     anime.value = await getAnimeById(route.params.id)
+    const id = route.params.id
+    views.value = incrementViews(id)
+
   } catch (err) {
     error.value = err.message
   } finally {
@@ -29,7 +36,7 @@ onMounted(async () => {
       <p v-else-if="error">
         {{ error }}
       </p>
-
+      
       <div
         v-else
         class="anime-detail__content"
@@ -37,7 +44,6 @@ onMounted(async () => {
         <h1 class="anime-detail__title">
           {{ anime.title }}
         </h1>
-
         <div class="anime-detail__main">
 
             <div class="anime-detail__poster">
@@ -63,7 +69,9 @@ onMounted(async () => {
                 <div class="anime-detail__stat">
                     🎬 {{ anime.status }}
                 </div>
-
+                <div class="anime-detail__stat">
+                    👁️ {{ views }} visitas
+                </div>
                 </div>
 
                 <div class="anime-detail__genres">
