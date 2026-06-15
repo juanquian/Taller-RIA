@@ -96,7 +96,7 @@ onUnmounted(() => {
         />
       </div>
       <p v-if="loadingMore" class="home-view__loading">
-      Cargando más animes...
+      Estamos cargando más animes, no te desesperes...
       </p>
     </section>
   </div>

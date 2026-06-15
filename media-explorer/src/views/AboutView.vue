@@ -28,11 +28,14 @@
       </ul>
       <h2>Funcionalidades</h2>
       <ul class="about-view__list">
-        <li>Búsqueda de anime</li>
-        <li>Favoritos persistentes</li>
-        <li>Página de detalle</li>
-        <li>Modo oscuro/claro</li>
-        <li>Persistencia local</li>
+        <li>🔎 Búsqueda de anime en tiempo real</li>
+        <li>⭐ Sistema de favoritos persistentes</li>
+        <li>📄 Página de detalle por anime</li>
+        <li>🧠 Persistencia de última búsqueda (sessionStorage)</li>
+        <li>👁 Contador de visualizaciones por anime (tracking local)</li>
+        <li>🌙 Modo oscuro / claro</li>
+        <li>💾 Persistencia de estado en el navegador</li>
+        <li>📱 Diseño responsive</li>
       </ul>
     </div>
   </div>  
