@@ -38,9 +38,10 @@ export async function getTopAnime(page = 1) {
   const response = await fetch(
     `${BASE_URL}/top/anime?page=${page}&limit=10`
   )
-
+  if (!response.ok) {
+    throw new Error('Error al obtener el top de animes')
+  }
   const { data } = await response.json()
-
   return data.map(item => ({
     id: item.mal_id,
     title: item.title,
