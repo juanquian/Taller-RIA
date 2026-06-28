@@ -10,6 +10,8 @@ const topAnime = ref([])
 const page = ref(1)
 const loadingMore = ref(false)
 const hasMore = ref(true)
+const loadingInitial = ref(true)
+const error = ref(null)
 
 async function loadMore() {
   if (loadingMore.value || !hasMore.value) return
@@ -27,6 +29,8 @@ async function loadMore() {
     }
 
     topAnime.value.push(...moreAnime)
+  } catch (err) {
+    error.value = err.message
   }
   finally {
     loadingMore.value = false
@@ -44,9 +48,16 @@ function handleScroll() {
 }
 
 onMounted(async () => {
-  topAnime.value = await getTopAnime()
-
-  window.addEventListener('scroll', handleScroll)
+  try {
+    error.value = null
+    topAnime.value = await getTopAnime()
+    window.addEventListener('scroll', handleScroll)
+  } catch (err) {
+    error.value = err.message
+    hasMore.value = false
+  } finally {
+    loadingInitial.value = false
+  }
 })
 
 onUnmounted(() => {
@@ -88,7 +99,15 @@ onUnmounted(() => {
     <section class="home-view__section">
       <h2>🔥 Top Anime</h2>
 
-      <div class="home-view__grid">
+      <p v-if="loadingInitial" class="home-view__loading">
+        Cargando animes destacados...
+      </p>
+
+      <p v-else-if="error" class="home-view__error">
+        {{ error }}
+      </p>
+
+      <div v-else class="home-view__grid">
         <AnimeCard
           v-for="anime in topAnime"
           :key="anime.id"
@@ -102,73 +121,4 @@ onUnmounted(() => {
   </div>
 </template>
 
-<style scoped>
-.home-view {
-  padding: 1rem;
-}
-
-.home-view__hero {
-  min-height: 60vh;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  text-align: center;
-
-  background:
-    linear-gradient(
-      rgba(0,0,0,0.5),
-      rgba(0,0,0,0.7)
-    ),
-    url('../assets/images/anime-banner.jpg');
-
-  background-size: cover;
-  background-position: center;
-
-  border-radius: 12px;
-  margin-bottom: 3rem;
-}
-
-.home-view__hero-content {
-  max-width: 700px;
-  padding: 2rem;
-}
-
-.home-view__title {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  margin-bottom: 1rem;
-}
-
-.home-view__desc {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 2rem;
-}
-
-.home-view__actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.home-view__section {
-  margin-top: 3rem;
-}
-
-.home-view__grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(170px, 1fr)
-  );
-  gap: 1rem;
-  margin-top: 1rem;
-}
-.home-view__loading {
-  text-align: center;
-  margin-top: 2rem;
-  opacity: 0.8;
-}
-</style>
+<style scoped src="./HomeView.css"></style>

@@ -33,37 +33,5 @@ const { results, isLoading, error, lastQuery } = storeToRefs(animeStore)
   </div>
 </template>
 
-<style scoped>
-.explore-view {
-  padding: 2rem 1rem;
-}
-
-.explore-view__last {
-  color: #888;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.explore-view__status {
-  color: #aaa;
-  margin-top: 1rem;
-}
-
-.explore-view__status--error {
-  color: #e04f4f;
-}
-
-.explore-view__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-@media (min-width: 600px) {
-  .explore-view__grid {
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  }
-}
-</style>
+<style scoped src="./ExploreView.css"></style>
 

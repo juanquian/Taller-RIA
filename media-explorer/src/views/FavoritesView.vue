@@ -28,32 +28,5 @@ const { favorites } = storeToRefs(favoritesStore)
   </div>
 </template>
 
-<style scoped>
-/* BEM: favorites-view */
-.favorites-view {
-  padding: 2rem 1rem;
-}
-
-.favorites-view__empty {
-  color: #888;
-  margin-top: 1rem;
-}
-
-.favorites-view__clear {
-  margin: 1rem 0;
-}
-
-.favorites-view__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  gap: 1rem;
-  margin-top: 0.5rem;
-}
-
-@media (min-width: 600px) {
-  .favorites-view__grid {
-    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-  }
-}
-</style>
+<style scoped src="./FavoritesView.css"></style>
 

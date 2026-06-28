@@ -41,27 +41,4 @@
   </div>  
 </template>
 
-<style scoped>
-/* BEM: about-view */
-.about-view {
-  padding: 2rem 1rem;
-}
-
-.about-view__intro {
-  margin: 1rem 0 2rem;
-  color: #aaa;
-  line-height: 1.7;
-  max-width: 650px;
-}
-
-h2 {
-  margin: 1.5rem 0 0.75rem;
-}
-
-.about-view__list {
-  list-style: disc;
-  padding-left: 1.5rem;
-  color: #bbb;
-  line-height: 2.1;
-}
-</style>
+<style scoped src="./AboutView.css"></style>

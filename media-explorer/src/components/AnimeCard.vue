@@ -62,13 +62,4 @@ function goToDetail() {
     </div>
   </div>
 </template>
-<style scoped>
-  .anime-card {
-    cursor: pointer;
-    transition: transform 0.2s ease;
-  }
-
-  .anime-card:hover {
-    transform: translateY(-2px);  
-  }
-</style>
+<style scoped src="./AnimeCard.css"></style>
